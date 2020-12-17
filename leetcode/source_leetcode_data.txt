@@ -1,0 +1,6 @@
+709. To Lower Case
+
+https://leetcode.com/problems/to-lower-case/
+
+    def toLowerCase(self, str: str) -> str:
+        return "".join(chr(ord(i) + 32) if 65 <= ord(i) <= 90 else i for i in str)
