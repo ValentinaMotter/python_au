@@ -1,6 +1,28 @@
-709. To Lower Case
+101. Symmetric Tree
 
-https://leetcode.com/problems/to-lower-case/
+https://leetcode.com/problems/symmetric-tree/
 
-    def toLowerCase(self, str: str) -> str:
-        return "".join(chr(ord(i) + 32) if 65 <= ord(i) <= 90 else i for i in str)
+    def isSymmetric(self, root: TreeNode) -> bool:
+        if root == None:
+            return True
+        def change(node):
+            if node == None:
+                return node
+            elif node.left == None and node.right == None:
+                return node
+            else:
+                tmp = node.right
+                node.right = node.left
+                node.left = tmp
+                change(node.left)
+                change(node.right)
+        change(root.right)
+        def identicalTrees(l, r):
+            if l is None and r is None:
+                return True
+            if l is not None and r is not None:
+                return ((l.val == r.val) and
+                identicalTrees(l.left, r.left)and
+                identicalTrees(l.right, r.right))
+            return False
+        return identicalTrees(root.left, root.right)

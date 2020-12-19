@@ -59,5 +59,5 @@ def main(source, destination):
     write_md(destination, result)
 
 if __name__ == '__main__':
-    main(r"C:\Users\Валентина\PycharmProjects\python_au\leetcode\source_leetcode_data.txt", r"C:\Users\Валентина\PycharmProjects\python_au\leetcode\string.md")
+    main(r"C:\Users\Валентина\PycharmProjects\python_au\leetcode\source_leetcode_data.txt", r"C:\Users\Валентина\PycharmProjects\python_au\leetcode\linked-list.md")
 

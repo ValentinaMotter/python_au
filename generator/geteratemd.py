@@ -61,4 +61,4 @@ def main(source, destination):
 
 
 if __name__ == '__main__':
-    main(r"C:\Users\Валентина\PycharmProjects\python_au\leetcode\source_leetcode_data.txt", r"C:\Users\Валентина\PycharmProjects\python_au\leetcode\linked-list.md")
+    main(r"C:\Users\Валентина\PycharmProjects\python_au\leetcode\source_leetcode_data.txt", r"C:\Users\Валентина\PycharmProjects\python_au\leetcode\tree.md")
