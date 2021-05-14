@@ -39,12 +39,22 @@ def create_plot(res_by_list):
     ordinate = []
     staff = input()
     num_of_resource  = int(input())
-    for elem in res_by_list:
-        for dc in elem:
-                if dc['staff_id'] == staff and dc['resource'] == num_of_resource:
-                    abscissa.append(dc['date'])
-                    ordinate.append(dc['count'])
-    plt.title(staff)
+    if staff != 'None':
+        for elem in res_by_list:
+            for dc in elem:
+                    if dc['staff_id'] == staff and dc['resource'] == num_of_resource:
+                        abscissa.append(dc['date'])
+                        ordinate.append(dc['count'])
+    else:
+        for elem in res_by_list:
+            for dc in elem:
+                    if dc['resource'] == num_of_resource:
+                        abscissa.append(dc['date'])
+                        ordinate.append(dc['count'])
+    if staff != 'None':
+        plt.title(staff)
+    else:
+        plt.title(num_of_resource)
     plt.xlabel('date')
     plt.ylabel('count')
     plt.plot(abscissa, ordinate)
@@ -57,6 +67,8 @@ def main(file):
     res_by_list = sort_by_resource(sorted_info)
     create_plot(res_by_list)
 
+#if you want info without staff, type 'None', 'number of resource'
+#if you want info with staff, type 'Name of staff', 'number of resource'
 
 if __name__ == '__main__':
     main('dataset.txt')
