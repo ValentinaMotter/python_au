@@ -1,8 +1,9 @@
 import matplotlib.pyplot as plt
 from datetime import datetime
+import sys
 
 
-def open_file(file='dataset.txt'):
+def open_file(file='data.txt'):
     ouf = open(file)
     data = ouf.readlines()
     ouf.close()
@@ -10,10 +11,11 @@ def open_file(file='dataset.txt'):
 
 
 def sort_by_date(data):
-    headers = data.pop(0).strip(' ').strip('\n').split(',')
-    info = []
-    for elem in data:
-        info.append(dict(zip(headers, elem.strip().split(','))))
+    headers = data.pop(0).strip(' ').strip('\n').split(', ')
+    # info = []
+    # for elem in data:
+    #     info.append(dict(zip(headers, elem.strip().split(','))))
+    info = [dict(zip(headers, elem.strip().split(','))) for elem in data]
     for elem in info:
         elem['resource'] = int(elem['resource'])
         elem['count'] = int(elem['count'])
@@ -34,11 +36,11 @@ def sort_by_resource(sorted_info):
     return res_by_list
 
 
-def create_plot(res_by_list):
+def create_plot(res_by_list, staff_key, resource_key):
     abscissa = []
     ordinate = []
-    staff = input()
-    num_of_resource  = int(input())
+    staff = staff_key
+    num_of_resource = resource_key
     if staff != 'None':
         for elem in res_by_list:
             for dc in elem:
@@ -57,18 +59,20 @@ def create_plot(res_by_list):
         plt.title(num_of_resource)
     plt.xlabel('date')
     plt.ylabel('count')
-    plt.plot(abscissa, ordinate)
+    plt.plot(abscissa, ordinate, 'o')
     plt.show()
 
 
 def main(file):
     data_str = open_file(file)
+    if data_str == 'date, resource, count, staff_id':
+        break
     sorted_info = sort_by_date(data_str)
     res_by_list = sort_by_resource(sorted_info)
-    create_plot(res_by_list)
+    create_plot(res_by_list, sys.argv[1], int(sys.argv[2]))
 
 #if you want info without staff, type 'None', 'number of resource'
 #if you want info with staff, type 'Name of staff', 'number of resource'
 
 if __name__ == '__main__':
-    main('dataset.txt')
+    main('data.txt')
